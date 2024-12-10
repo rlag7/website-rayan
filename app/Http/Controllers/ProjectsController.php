@@ -2,27 +2,35 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Project;
 use Illuminate\Http\Request;
 
 class ProjectsController extends Controller
 {
+    /**
+     * Display a listing of all projects.
+     *
+     * @return \Illuminate\View\View
+     */
     public function index()
     {
-        $projects = [
-            (object)[
-                'title' => 'Shopify Website 1',
-                'description' => 'A custom Shopify store.',
-                'url' => 'https://example-shopify-store.com',
-            ],
-            (object)[
-                'title' => 'Shopify Website 2',
-                'description' => 'Another Shopify store with advanced features.',
-                'url' => 'https://example-shopify-store-2.com',
-            ],
-        ];
+        // Fetch all projects from the database
+        $projects = Project::all();
 
-        return view('projects', compact('projects'));
+        // Pass projects to the index view
+        return view('projects.index', compact('projects'));
+    }
+
+    /**
+     * Display the specified project by slug.
+     *
+     * @param  string  $slug
+     * @return \Illuminate\View\View
+     */
+    public function show($slug)
+    {
+        $project = Project::where('slug', $slug)->firstOrFail();
+        return view('projects.show', compact('project'));
     }
 
 }
-

@@ -4,27 +4,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Portfolio')</title>
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-
+    @vite('resources/css/app.css')
+    <style>
+        .fade-enter-active, .fade-leave-active {
+            transition: opacity 0.5s ease-in-out;
+        }
+        .fade-enter, .fade-leave-to {
+            opacity: 0;
+        }
+    </style>
 </head>
-<body>
-<header>
-    <nav>
-        <ul>
-            <li><a href="{{ route('home') }}">Home</a></li>
-            <li><a href="{{ route('projects') }}">Projects</a></li>
-            <li><a href="{{ route('github') }}">GitHub</a></li>
-            <li><a href="{{ route('contact.form') }}">Contact</a></li>
-        </ul>
-    </nav>
-</header>
+<body class="bg-gradient-to-b from-gray-800 via-gray-900 to-black text-white min-h-screen flex flex-col pt-20">
 
-<main>
+@include('components.header')
+
+<main class="container mx-auto px-6 py-12 flex-grow mt-20">
     @yield('content')
 </main>
 
-<footer>
-    <p>&copy; {{ date('Y') }} rayan lagmouch. All rights reserved.</p>
-</footer>
+@include('components.footer')
+
+<script>
+    const calculateAge = (birthDate) => {
+        const diff = new Date() - new Date(birthDate);
+        return Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
+    };
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll(".dynamic-age").forEach(el => {
+            el.textContent = calculateAge("2007-04-20");
+        });
+    });
+
+    document.body.style.opacity = 0;
+    window.onload = function() {
+        document.body.style.transition = "opacity 0.5s ease-in-out";
+        document.body.style.opacity = 1;
+    };
+
+    document.querySelectorAll("a").forEach(function (link) {
+        link.addEventListener("click", function (e) {
+            e.preventDefault();
+            let href = this.getAttribute("href");
+
+            document.body.style.opacity = 0;
+
+            setTimeout(function () {
+                window.location.href = href;
+            }, 500);
+        });
+    });
+</script>
 </body>
 </html>

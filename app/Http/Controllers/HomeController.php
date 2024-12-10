@@ -1,13 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
+use App\Models\Project; // Import the Project model
 
 class HomeController extends Controller
 {
     public function index()
     {
-        return view('home'); // Corresponds to resources/views/home.blade.php
+        // Fetch projects from the database
+        $projects = Project::latest()->take(6)->get(); // Adjust the number as needed
+
+        // Pass projects to the view
+        return view('home', compact('projects'));
     }
 }
