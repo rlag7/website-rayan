@@ -13,12 +13,13 @@
             opacity: 0;
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
-<body class="bg-gradient-to-b from-gray-800 via-gray-900 to-black text-white min-h-screen flex flex-col pt-20">
+<body class="bg-white text-[#282828] min-h-screen flex flex-col pt-20">
 
 @include('components.header')
 
-<main class="container mx-auto px-6 py-12 flex-grow mt-20">
+<main class="container mx-auto px-6 py-12 flex-grow ">
     @yield('content')
 </main>
 
