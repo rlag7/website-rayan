@@ -20,10 +20,7 @@
         <section class="space-y-6 text-center">
             <h2 class="text-5xl font-extrabold text-indigo-500">About Me</h2>
             <p class="text-gray-300 text-lg max-w-3xl mx-auto">
-                I’m studying Software Development at MBO Utrecht (Niveau 4). At 17, I’m building skills in web development, backend systems, and problem-solving.
-            </p>
-            <p class="text-gray-400 text-md italic">
-                Age: <span class="dynamic-age"></span> years
+                I’m studying Software Development at MBO Utrecht (Niveau 4). At <span class="dynamic-age"></span>, I’m building skills in web development, backend systems, and problem-solving.
             </p>
         </section>
 
